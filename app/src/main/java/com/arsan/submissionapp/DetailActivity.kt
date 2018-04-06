@@ -2,21 +2,27 @@ package com.arsan.submissionapp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.*
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DetailActivityUI().setContentView(this)
-    }
+        verticalLayout {
+            imageView(intent.getIntExtra("CLUB_IMAGE",0)).
+                    lparams {
+                        margin = dip(20)
+                        width = dip(70)
+                        height = dip(70)
+                    }
+            textView(intent.getStringExtra("CLUB_NAME")).lparams{
+                bottomMargin = dip(10)
+                setGravity(1)
 
-    class DetailActivityUI : AnkoComponent<DetailActivity> {
-        override fun createView(ui: AnkoContext<DetailActivity>): View {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            textView(intent.getStringExtra("CLUB_DESCRIPTION")).lparams{
+                leftMargin = dip(10)
+                rightMargin = dip(10)
+            }
         }
-
     }
 }

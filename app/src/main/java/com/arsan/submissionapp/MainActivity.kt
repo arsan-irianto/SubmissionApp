@@ -3,10 +3,11 @@ package com.arsan.submissionapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.arsan.submissionapp.R.array.res_club_image
 import com.arsan.submissionapp.R.array.res_club_name
+import com.arsan.submissionapp.R.array.res_club_description
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,16 +24,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clubItemClicked(clubItem : ItemClub){
-        Toast.makeText(this, "Clicked: ${clubItem.clubName}", Toast.LENGTH_SHORT).show()
+        toast("Clicked: ${clubItem.clubName}")
+        startActivity(intentFor<DetailActivity>(
+                "CLUB_NAME" to clubItem.clubName,
+                "CLUB_IMAGE" to clubItem.clubLogo,
+                "CLUB_DESCRIPTION" to clubItem.clubDescription).singleTop())
     }
 
     private fun initData() {
         val clubName = resources.getStringArray(res_club_name)
         val clubLogo = resources.obtainTypedArray(res_club_image)
+        val clubDescription = resources.getStringArray(res_club_description)
 
         items.clear()
         for (i in clubName.indices){
-            items.add(ItemClub(clubName[i], clubLogo.getResourceId(i,0)))
+            items.add(ItemClub(
+                    clubName[i],
+                    clubLogo.getResourceId(i,0),
+                    clubDescription[i]))
         }
 
         clubLogo.recycle()
