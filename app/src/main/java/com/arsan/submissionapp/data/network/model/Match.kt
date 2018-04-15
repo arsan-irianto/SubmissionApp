@@ -1,4 +1,4 @@
-package com.arsan.submissionapp.model
+package com.arsan.submissionapp.data.network.model
 
 import com.google.gson.annotations.SerializedName
 

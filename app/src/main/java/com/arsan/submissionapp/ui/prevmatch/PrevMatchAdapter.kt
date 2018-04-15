@@ -1,21 +1,20 @@
-package com.arsan.submissionapp.main
+package com.arsan.submissionapp.ui.prevmatch
 
-import android.content.ClipData
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.arsan.submissionapp.R
-import com.arsan.submissionapp.model.Match
-import kotlinx.android.synthetic.main.item_list.view.*
+import com.arsan.submissionapp.data.network.model.Match
+import kotlinx.android.synthetic.main.prevmatch_list.view.*
 
-class MainAdapter(private val context: Context,
-                  private val matchList: List<Match>)
-    : RecyclerView.Adapter<MainAdapter.MatchViewHolder>() {
+class PrevMatchAdapter(private val context: Context,
+                       private val matchList: List<Match>)
+    : RecyclerView.Adapter<PrevMatchAdapter.MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder =
-            MatchViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list,parent,false))
+            MatchViewHolder(LayoutInflater.from(context).inflate(R.layout.prevmatch_list,parent,false))
 
     override fun getItemCount(): Int = matchList.size
 

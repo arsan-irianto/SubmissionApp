@@ -1,4 +1,4 @@
-package com.arsan.submissionapp.api
+package com.arsan.submissionapp.data.network
 
 import java.net.URL
 
