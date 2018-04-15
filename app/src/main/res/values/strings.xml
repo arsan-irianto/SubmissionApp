@@ -1,35 +1,3 @@
 <resources>
     <string name="app_name">Football Club</string>
-    <string-array name="res_club_name">
-        <item>Manchester United FC</item>
-        <item>Barcelona FC</item>
-        <item>Real Madrid FC</item>
-        <item>Bayern Munchen FC</item>
-        <item>Manchester City FC</item>
-        <item>Chelsea FC</item>
-        <item>AC Milan FC</item>
-        <item>Arsenal FC</item>
-    </string-array>
-
-    <array name="res_club_image">
-        <item>@drawable/img_mu</item>
-        <item>@drawable/img_barca</item>
-        <item>@drawable/img_madrid</item>
-        <item>@drawable/img_bayern</item>
-        <item>@drawable/img_city</item>
-        <item>@drawable/img_chelsea</item>
-        <item>@drawable/img_acm</item>
-        <item>@drawable/img_arsenal</item>
-    </array>
-
-    <string-array name="res_club_description">
-        <item>is a professional football club based in Old Trafford, Greater Manchester, England, that competes in the Premier League, the top flight of English football. Nicknamed "the Red Devils", the club was founded as Newton Heath LYR Football Club in 1878, changed its name to Manchester United in 1902 and moved to its current stadium, Old Trafford, in 1910.</item>
-        <item>Commonly known as Barcelona and familiarly as Barça, is a professional football club based in Barcelona, Catalonia, Spain.</item>
-        <item>commonly known as Real Madrid, or simply as Real, is a professional football club based in Madrid, Spain.</item>
-        <item>commonly known as FC Bayern Munchen , FCB, Bayern Munich, or FC Bayern, is a German sports club based in Munich, Bavaria (Bayern)</item>
-        <item>are a football club in Manchester, England. Founded in 1880 as St. Mark's (West Gorton), they became Ardwick Association Football Club in 1887 and Manchester City in 1894. The club's home ground is the City of Manchester Stadium in east Manchester, which they moved to in 2003, having played at Maine Road since 1923.</item>
-        <item>is a professional football club in London, England, that competes in the Premier League. Founded in 1905, the club's home ground since then has been Stamford Bridge</item>
-        <item>commonly referred to as A.C. Milan or simply Milan, is a professional football club in Milan, Italy, founded in 1899</item>
-        <item>is a professional football club based in Islington, London, England, that plays in the Premier League, the top flight of English football</item>
-    </string-array>
 </resources>
