@@ -24,11 +24,11 @@ import org.jetbrains.anko.support.v4.onRefresh
  */
 class PrevMatchFragment : Fragment(), PrevMatchView {
 
-    private var prevMatch : MutableList<Match> = mutableListOf()
-    private lateinit var progressBar : ProgressBar
+    private var prevMatch: MutableList<Match> = mutableListOf()
+    private lateinit var progressBar: ProgressBar
     private lateinit var prevMatchAdapter: PrevMatchAdapter
     private lateinit var prevMatchPresenter: PrevMatchPresenter
-    private val leagueId : String? = "4328"
+    private val leagueId: String? = "4328"
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -61,7 +61,7 @@ class PrevMatchFragment : Fragment(), PrevMatchView {
     }
 
     companion object {
-        fun newInstance() : PrevMatchFragment = PrevMatchFragment()
+        fun newInstance(): PrevMatchFragment = PrevMatchFragment()
     }
 
     override fun showLoading() {

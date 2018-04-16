@@ -12,7 +12,7 @@ class PrevMatchPresenter(private val view: PrevMatchView,
                          private val apiRepository: ApiRepository,
                          private val gson: Gson) {
 
-    fun getPrevMatch(idLeague : String?){
+    fun getPrevMatch(idLeague: String?) {
         view.showLoading()
 
         doAsync {

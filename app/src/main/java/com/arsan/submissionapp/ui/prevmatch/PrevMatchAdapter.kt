@@ -14,7 +14,7 @@ class PrevMatchAdapter(private val context: Context,
     : RecyclerView.Adapter<PrevMatchAdapter.MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder =
-            MatchViewHolder(LayoutInflater.from(context).inflate(R.layout.prevmatch_list,parent,false))
+            MatchViewHolder(LayoutInflater.from(context).inflate(R.layout.prevmatch_list, parent, false))
 
     override fun getItemCount(): Int = matchList.size
 
@@ -24,7 +24,7 @@ class PrevMatchAdapter(private val context: Context,
 
 
     class MatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindMatchItem(items : Match){
+        fun bindMatchItem(items: Match) {
             itemView.event_date.text = items.dateEvent
             itemView.home_team.text = items.homeTeam
             itemView.home_score.text = items.homeScore

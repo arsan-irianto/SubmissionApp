@@ -11,7 +11,7 @@ class NextMatchPresenter(private val view: NextMatchView,
                          private val apiRepository: ApiRepository,
                          private val gson: Gson) {
 
-    fun getNextMatch(idLeague : String?){
+    fun getNextMatch(idLeague: String?) {
         view.showLoading()
 
         doAsync {
