@@ -12,12 +12,12 @@ class MatchListActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_dashboard -> {
+            R.id.navigation_prevmatch -> {
                 val prevMatchFragment = PrevMatchFragment.newInstance()
                 openFragment(prevMatchFragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
+            R.id.navigation_nextmatch -> {
                 val nextMatchFragment = NextMatchFragment.newInstance()
                 openFragment(nextMatchFragment)
                 return@OnNavigationItemSelectedListener true
