@@ -10,8 +10,7 @@ import kotlinx.android.synthetic.main.activity_match_list.*
 
 class MatchListActivity : AppCompatActivity() {
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        item ->
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_dashboard -> {
                 val prevMatchFragment = PrevMatchFragment.newInstance()
@@ -35,9 +34,9 @@ class MatchListActivity : AppCompatActivity() {
         openFragment(PrevMatchFragment.newInstance())
     }
 
-    private fun openFragment(fragment: Fragment){
+    private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
+        transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

@@ -13,13 +13,13 @@ object TheSportDBApi {
                 "/eventsnextleague.php?id=" + league
     }
 
-    fun getMatchDetail(eventId: String?): String {
+    fun getMatchDetail(event: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
-                "/lookupevent.php?id=" + eventId
+                "/lookupevent.php?id=" + event
     }
 
-    fun getTeamDetail(teamId: String?): String {
+    fun getTeamDetail(team: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
-                "/lookupteam.php?id=" + teamId
+                "/lookupteam.php?id=" + team
     }
 }

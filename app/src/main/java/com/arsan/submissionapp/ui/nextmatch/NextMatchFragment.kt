@@ -11,12 +11,13 @@ import android.widget.ProgressBar
 import com.arsan.submissionapp.R
 import com.arsan.submissionapp.data.network.ApiRepository
 import com.arsan.submissionapp.data.network.model.Match
-import com.arsan.submissionapp.ui.prevmatch.NextMatchAdapter
+import com.arsan.submissionapp.ui.matchdetail.MatchDetailActivity
 import com.arsan.submissionapp.util.invisible
 import com.arsan.submissionapp.util.visible
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_prev_match.*
+import kotlinx.android.synthetic.main.fragment_next_match.*
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
@@ -38,7 +39,11 @@ class NextMatchFragment : Fragment(), NextMatchView {
         progressBar = this.progress_bar
 
 
-        nextMatchAdapter = NextMatchAdapter(requireContext(), nextMatch)
+        nextMatchAdapter = NextMatchAdapter(requireContext(), nextMatch) {
+            startActivity<MatchDetailActivity>("id" to "${it.idEvent}",
+                    "homeTeam" to "${it.idHomeTeam}",
+                    "awayTeam" to "${it.idAwayTeam}")
+        }
         rv_schedule.adapter = nextMatchAdapter
         rv_schedule.layoutManager = LinearLayoutManager(requireContext())
 

@@ -18,9 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity
-            android:name=".MatchListActivity"
-            android:label="@string/title_activity_match_list"></activity>-->
+        <activity android:name=".ui.matchdetail.MatchDetailActivity"></activity>
     </application>
 
 </manifest>

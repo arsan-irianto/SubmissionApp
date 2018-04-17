@@ -3,6 +3,7 @@ package com.arsan.submissionapp.data.network.model
 import com.google.gson.annotations.SerializedName
 
 data class Match(
+        @SerializedName("idEvent") var idEvent: String? = null,
         @SerializedName("idHomeTeam") var idHomeTeam: String? = null,
         @SerializedName("idAwayTeam") var idAwayTeam: String? = null,
         @SerializedName("strHomeTeam") var homeTeam: String? = null,
