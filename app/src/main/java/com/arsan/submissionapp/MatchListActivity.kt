@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.arsan.submissionapp.ui.favorites.FavoritesMatchFragment
 import com.arsan.submissionapp.ui.nextmatch.NextMatchFragment
 import com.arsan.submissionapp.ui.prevmatch.PrevMatchFragment
 import kotlinx.android.synthetic.main.activity_match_list.*
@@ -20,6 +21,11 @@ class MatchListActivity : AppCompatActivity() {
             R.id.navigation_nextmatch -> {
                 val nextMatchFragment = NextMatchFragment.newInstance()
                 openFragment(nextMatchFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_favorites->{
+                val favoritesMatchFragment = FavoritesMatchFragment.newInstance()
+                openFragment(favoritesMatchFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
