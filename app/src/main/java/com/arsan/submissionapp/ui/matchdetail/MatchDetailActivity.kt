@@ -1,5 +1,6 @@
 package com.arsan.submissionapp.ui.matchdetail
 
+import android.database.sqlite.SQLiteConstraintException
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -9,27 +10,34 @@ import android.widget.ProgressBar
 import com.arsan.submissionapp.R
 import com.arsan.submissionapp.R.drawable.ic_add_to_favorites
 import com.arsan.submissionapp.R.drawable.ic_added_to_favorites
-import com.arsan.submissionapp.R.id.add_to_favorite
-import com.arsan.submissionapp.R.id.navigation_prevmatch
+import com.arsan.submissionapp.R.id.*
 import com.arsan.submissionapp.data.network.ApiRepository
 import com.arsan.submissionapp.data.network.model.Match
 import com.arsan.submissionapp.data.network.model.Team
 import com.arsan.submissionapp.util.invisible
 import com.arsan.submissionapp.util.visible
 import com.arsan.submissionapp.R.menu.match_detail_menu
+import com.arsan.submissionapp.data.db.database
+import com.arsan.submissionapp.data.db.model.FavoritesMatch
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_match_detail.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 
 class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
     private lateinit var matchDetailPresenter: MatchDetailPresenter
     private lateinit var progressBar: ProgressBar
-    lateinit var id: String
+    private lateinit var id: String
     private lateinit var homeTeam: String
     private lateinit var awayTeam: String
-    private var itemMenu : Menu? =null
+    private var menuItem : Menu? =null
     private var isFavorite: Boolean = false
+    private lateinit var match: Match
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +60,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         matchDetailPresenter.getHomeTeam(homeTeam)
         matchDetailPresenter.getAwayTeam(awayTeam)
 
+        favoriteState()
 
     }
 
@@ -64,6 +73,17 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     }
 
     override fun showMatchDetail(data: List<Match>) {
+
+        match = Match(data[0].idEvent,
+                        data[0].dateEvent,
+                        data[0].idHomeTeam,
+                        data[0].homeTeam,
+                        data[0].homeScore,
+                        data[0].idAwayTeam,
+                        data[0].awayTeam,
+                        data[0].awayScore
+                )
+
         event_date.text = data[0].dateEvent
         home_score.text = data[0].homeScore
         away_score.text = data[0].awayScore
@@ -100,32 +120,74 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(match_detail_menu, menu)
-        itemMenu = menu
-        setFavorite()
+        menuItem = menu
+        setFavorites()
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId){
-            navigation_prevmatch -> {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.home -> {
                 finish()
                 true
             }
-            add_to_favorite -> {
-                isFavorite = !isFavorite
-                setFavorite()
+            R.id.add_to_favorite -> {
+                if(isFavorite) removeFromFavorites() else addToFavorite()
+
+                isFavorite= !isFavorite
+                setFavorites()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun setFavorite() {
-        if (isFavorite)
-            itemMenu?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
-        else
-            itemMenu?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
+    private fun addToFavorite(){
+        try {
+            database.use{
+                insert(FavoritesMatch.TABLE_FAVORITE,
+                        FavoritesMatch.EVENT_ID to match.idEvent,
+                        FavoritesMatch.EVENT_DATE to match.dateEvent,
+                        FavoritesMatch.HOME_TEAM_ID to match.idHomeTeam,
+                        FavoritesMatch.HOME_TEAM to match.homeTeam,
+                        FavoritesMatch.HOME_SCORE to match.homeScore,
+                        FavoritesMatch.AWAY_TEAM_ID to match.idAwayTeam,
+                        FavoritesMatch.AWAY_TEAM to match.awayTeam,
+                        FavoritesMatch.AWAY_SCORE to match.awayScore)
+            }
+            snackbar(swipe_refresh,"Added to favorites").show()
+        }catch(e : SQLiteConstraintException){
+            snackbar(swipe_refresh,e.localizedMessage).show()
+        }
     }
 
+    private fun removeFromFavorites(){
+        try {
+            database.use{
+                delete(FavoritesMatch.TABLE_FAVORITE, "(EVENT_ID = {id})",
+                        "id" to id)
+            }
+            snackbar(swipe_refresh, "Remove From Favorite").show()
+        }catch (e:SQLiteConstraintException){
+            snackbar(swipe_refresh, e.localizedMessage).show()
+        }
+    }
+
+    private fun setFavorites(){
+        if(isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
+    }
+
+    private fun favoriteState(){
+        database.use {
+            val result = select(FavoritesMatch.TABLE_FAVORITE).whereArgs("(EVENT_ID = {id})",
+                    "id" to id)
+            val favorite  = result.parseList(classParser<FavoritesMatch>())
+            if(!favorite.isEmpty()) isFavorite = true
+        }
+    }
 
 }

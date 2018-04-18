@@ -1,6 +1,5 @@
 package com.arsan.submissionapp.ui.prevmatch
 
-import android.content.Context
 import com.arsan.submissionapp.data.network.ApiRepository
 import com.arsan.submissionapp.data.network.TheSportDBApi
 import com.arsan.submissionapp.data.network.model.MatchResponse

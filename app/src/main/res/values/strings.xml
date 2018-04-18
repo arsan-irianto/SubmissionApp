@@ -8,4 +8,14 @@
     <string name="prev_match_fragment">Prev Match fragment</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="favorites">Favorites</string>
+    <string name="str_vs">vs</string>
+    <string name="str_goals">Goals</string>
+    <string name="str_shots">Shots</string>
+    <string name="str_lineups">Lineups</string>
+    <string name="str_goalkeeper">Goalkeeper</string>
+    <string name="str_defense">Defense</string>
+    <string name="str_midfield">Midfield</string>
+    <string name="str_forward">Forward</string>
+    <string name="str_substitutes">Substitutes</string>
+    <string name="str_event_date">Sab, 10 Mar 2018</string>
 </resources>
