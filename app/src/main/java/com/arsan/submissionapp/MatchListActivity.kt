@@ -23,7 +23,7 @@ class MatchListActivity : AppCompatActivity() {
                 openFragment(nextMatchFragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_favorites->{
+            R.id.navigation_favorites -> {
                 val favoritesMatchFragment = FavoritesMatchFragment.newInstance()
                 openFragment(favoritesMatchFragment)
                 return@OnNavigationItemSelectedListener true

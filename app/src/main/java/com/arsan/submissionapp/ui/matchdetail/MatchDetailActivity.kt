@@ -35,7 +35,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     private lateinit var id: String
     private lateinit var homeTeam: String
     private lateinit var awayTeam: String
-    private var menuItem : Menu? =null
+    private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
     private lateinit var match: Match
 
@@ -75,14 +75,14 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     override fun showMatchDetail(data: List<Match>) {
 
         match = Match(data[0].idEvent,
-                        data[0].dateEvent,
-                        data[0].idHomeTeam,
-                        data[0].homeTeam,
-                        data[0].homeScore,
-                        data[0].idAwayTeam,
-                        data[0].awayTeam,
-                        data[0].awayScore
-                )
+                data[0].dateEvent,
+                data[0].idHomeTeam,
+                data[0].homeTeam,
+                data[0].homeScore,
+                data[0].idAwayTeam,
+                data[0].awayTeam,
+                data[0].awayScore
+        )
 
         event_date.text = data[0].dateEvent
         home_score.text = data[0].homeScore
@@ -126,15 +126,15 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.home -> {
+        return when (item.itemId) {
+            android.R.id.home -> {
                 finish()
                 true
             }
             R.id.add_to_favorite -> {
-                if(isFavorite) removeFromFavorites() else addToFavorite()
+                if (isFavorite) removeFromFavorites() else addToFavorite()
 
-                isFavorite= !isFavorite
+                isFavorite = !isFavorite
                 setFavorites()
                 true
             }
@@ -143,9 +143,9 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         }
     }
 
-    private fun addToFavorite(){
+    private fun addToFavorite() {
         try {
-            database.use{
+            database.use {
                 insert(FavoritesMatch.TABLE_FAVORITE,
                         FavoritesMatch.EVENT_ID to match.idEvent,
                         FavoritesMatch.EVENT_DATE to match.dateEvent,
@@ -156,37 +156,37 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                         FavoritesMatch.AWAY_TEAM to match.awayTeam,
                         FavoritesMatch.AWAY_SCORE to match.awayScore)
             }
-            snackbar(swipe_refresh,"Added to favorites").show()
-        }catch(e : SQLiteConstraintException){
-            snackbar(swipe_refresh,e.localizedMessage).show()
-        }
-    }
-
-    private fun removeFromFavorites(){
-        try {
-            database.use{
-                delete(FavoritesMatch.TABLE_FAVORITE, "(EVENT_ID = {id})",
-                        "id" to id)
-            }
-            snackbar(swipe_refresh, "Remove From Favorite").show()
-        }catch (e:SQLiteConstraintException){
+            snackbar(swipe_refresh, "Added to favorites").show()
+        } catch (e: SQLiteConstraintException) {
             snackbar(swipe_refresh, e.localizedMessage).show()
         }
     }
 
-    private fun setFavorites(){
-        if(isFavorite)
+    private fun removeFromFavorites() {
+        try {
+            database.use {
+                delete(FavoritesMatch.TABLE_FAVORITE, "(EVENT_ID = {id})",
+                        "id" to id)
+            }
+            snackbar(swipe_refresh, "Remove From Favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            snackbar(swipe_refresh, e.localizedMessage).show()
+        }
+    }
+
+    private fun setFavorites() {
+        if (isFavorite)
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
         else
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
     }
 
-    private fun favoriteState(){
+    private fun favoriteState() {
         database.use {
             val result = select(FavoritesMatch.TABLE_FAVORITE).whereArgs("(EVENT_ID = {id})",
                     "id" to id)
-            val favorite  = result.parseList(classParser<FavoritesMatch>())
-            if(!favorite.isEmpty()) isFavorite = true
+            val favorite = result.parseList(classParser<FavoritesMatch>())
+            if (!favorite.isEmpty()) isFavorite = true
         }
     }
 

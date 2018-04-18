@@ -5,23 +5,24 @@ import android.database.sqlite.SQLiteDatabase
 import com.arsan.submissionapp.data.db.model.FavoritesMatch
 import org.jetbrains.anko.db.*
 
-class SQLiteDBHelper(ctx:Context) : ManagedSQLiteOpenHelper(ctx, "favoritesMatch.db", null,1 ) {
+class SQLiteDBHelper(ctx: Context)
+    : ManagedSQLiteOpenHelper(ctx, "favoritesMatch.db", null, 1) {
 
     companion object {
-        private var instance : SQLiteDBHelper? =null
+        private var instance: SQLiteDBHelper? = null
 
         @Synchronized
-        fun getInstance(ctx:Context) : SQLiteDBHelper{
-            if(instance == null){
+        fun getInstance(ctx: Context): SQLiteDBHelper {
+            if (instance == null) {
                 instance = SQLiteDBHelper(ctx.applicationContext)
             }
-            return instance!!
+            return instance as SQLiteDBHelper
         }
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         db.createTable(FavoritesMatch.TABLE_FAVORITE, true,
-                FavoritesMatch.ID to INTEGER  + PRIMARY_KEY + AUTOINCREMENT,
+                FavoritesMatch.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 FavoritesMatch.EVENT_ID to TEXT + UNIQUE,
                 FavoritesMatch.EVENT_DATE to TEXT,
                 FavoritesMatch.HOME_TEAM_ID to TEXT,

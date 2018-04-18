@@ -31,14 +31,14 @@ import org.jetbrains.anko.support.v4.startActivity
  */
 class FavoritesMatchFragment : Fragment() {
 
-    private var favoritesMatch : MutableList<FavoritesMatch> = mutableListOf()
+    private var favoritesMatch: MutableList<FavoritesMatch> = mutableListOf()
     private lateinit var favoritesMatchAdapter: FavoritesMatchAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         swipe_refresh.isRefreshing = false
 
-        favoritesMatchAdapter = FavoritesMatchAdapter(requireContext(),favoritesMatch){
+        favoritesMatchAdapter = FavoritesMatchAdapter(requireContext(), favoritesMatch) {
             startActivity<MatchDetailActivity>("id" to "${it.eventId}",
                     "homeTeam" to "${it.homeTeamId}",
                     "awayTeam" to "${it.awayTeamId}")
