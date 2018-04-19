@@ -4,8 +4,9 @@ import com.arsan.submissionapp.data.network.ApiRepository
 import com.arsan.submissionapp.data.network.TheSportDBApi
 import com.arsan.submissionapp.data.network.model.MatchResponse
 import com.google.gson.Gson
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 
 class PrevMatchPresenter(private val view: PrevMatchView,
                          private val apiRepository: ApiRepository,
@@ -14,15 +15,14 @@ class PrevMatchPresenter(private val view: PrevMatchView,
     fun getPrevMatch(idLeague: String?) {
         view.showLoading()
 
-        doAsync {
-            val data = gson.fromJson(apiRepository.doRequest(
-                    TheSportDBApi.getPrevMatch(idLeague)),
-                    MatchResponse::class.java)
-
-            uiThread {
-                view.hideLoading()
-                view.showMatchList(data.events)
+        async(UI) {
+            val data = bg {
+                gson.fromJson(apiRepository.doRequest(
+                        TheSportDBApi.getPrevMatch(idLeague)),
+                        MatchResponse::class.java)
             }
+            view.showMatchList(data.await().events)
+            view.hideLoading()
         }
     }
 
