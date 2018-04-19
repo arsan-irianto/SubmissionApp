@@ -17,25 +17,24 @@ class MatchDetailPresenter(private val view: MatchDetailView,
 
     fun getMatchDetail(idEvent: String?) {
         view.showLoading()
-        doAsync {
-            val data = gson.fromJson(apiRepository.doRequest(
-                    TheSportDBApi.getMatchDetail(idEvent)),
-                    MatchResponse::class.java)
-            uiThread {
-                view.hideLoading()
-                view.showMatchDetail(data.events)
+        async(UI) {
+            val data = bg {
+                gson.fromJson(apiRepository.doRequest(
+                        TheSportDBApi.getMatchDetail(idEvent)),
+                        MatchResponse::class.java)
             }
+            view.showMatchDetail(data.await().events)
+            view.hideLoading()
         }
     }
 
     fun getHomeTeam(idTeam: String?) {
-        doAsync {
-            val data = gson.fromJson(apiRepository.doRequest(
+        async(UI) {
+            val data = bg{ gson.fromJson(apiRepository.doRequest(
                     TheSportDBApi.getTeamDetail(idTeam)),
                     TeamResponse::class.java)
-            uiThread {
-                view.showHomeTeam(data.teams)
             }
+            view.showHomeTeam(data.await().teams)
         }
     }
 
