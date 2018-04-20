@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import com.arsan.submissionapp.ui.favorites.FavoritesMatchFragment
 import com.arsan.submissionapp.ui.nextmatch.NextMatchFragment
 import com.arsan.submissionapp.ui.prevmatch.PrevMatchFragment
-import kotlinx.android.synthetic.main.activity_match_list.*
+import kotlinx.android.synthetic.main.activity_home.*
 
-class MatchListActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -34,7 +34,7 @@ class MatchListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_match_list)
+        setContentView(R.layout.activity_home)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         openFragment(PrevMatchFragment.newInstance())
