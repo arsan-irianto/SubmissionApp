@@ -36,7 +36,7 @@ class FavoritesMatchFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        swipe_refresh.isRefreshing = false
+        swipe_refresh_favorites.isRefreshing = false
 
         favoritesMatchAdapter = FavoritesMatchAdapter(requireContext(), favoritesMatch) {
             startActivity<MatchDetailActivity>("id" to "${it.eventId}",
@@ -44,12 +44,12 @@ class FavoritesMatchFragment : Fragment() {
                     "awayTeam" to "${it.awayTeamId}")
         }
 
-        rv_schedule.adapter = favoritesMatchAdapter
-        rv_schedule.layoutManager = LinearLayoutManager(requireContext())
+        rv_schedule_favorites.adapter = favoritesMatchAdapter
+        rv_schedule_favorites.layoutManager = LinearLayoutManager(requireContext())
 
         showFavoritesMatch()
 
-        swipe_refresh.onRefresh {
+        swipe_refresh_favorites.onRefresh {
             favoritesMatch.clear()
             showFavoritesMatch()
         }
@@ -57,12 +57,12 @@ class FavoritesMatchFragment : Fragment() {
 
     private fun showFavoritesMatch() {
         context?.database?.use {
-            swipe_refresh.isRefreshing = false
+            swipe_refresh_favorites.isRefreshing = false
             val result = select(FavoritesMatch.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<FavoritesMatch>())
             favoritesMatch.addAll(favorite)
             favoritesMatchAdapter.notifyDataSetChanged()
-            progress_bar.invisible()
+            progress_bar_favorites.invisible()
         }
     }
 

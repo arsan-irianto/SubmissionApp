@@ -7,5 +7,5 @@ fun View.visible(){
 }
 
 fun View.invisible(){
-    visibility = View.GONE
+    visibility = View.INVISIBLE
 }

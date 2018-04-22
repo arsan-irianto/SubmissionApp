@@ -4,6 +4,7 @@ import com.arsan.submissionapp.data.network.ApiRepository
 import com.arsan.submissionapp.data.network.TheSportDBApi
 import com.arsan.submissionapp.data.network.model.MatchResponse
 import com.arsan.submissionapp.data.network.model.TeamResponse
+import com.arsan.submissionapp.util.CoroutineContextProvider
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -13,11 +14,12 @@ import org.jetbrains.anko.uiThread
 
 class MatchDetailPresenter(private val view: MatchDetailView,
                            private val apiRepository: ApiRepository,
-                           private val gson: Gson) {
+                           private val gson: Gson,
+                           private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
     fun getMatchDetail(idEvent: String?) {
         view.showLoading()
-        async(UI) {
+        async(context.main) {
             val data = bg {
                 gson.fromJson(apiRepository.doRequest(
                         TheSportDBApi.getMatchDetail(idEvent)),
@@ -29,7 +31,7 @@ class MatchDetailPresenter(private val view: MatchDetailView,
     }
 
     fun getHomeTeam(idTeam: String?) {
-        async(UI) {
+        async(context.main) {
             val data = bg{ gson.fromJson(apiRepository.doRequest(
                     TheSportDBApi.getTeamDetail(idTeam)),
                     TeamResponse::class.java)
@@ -39,7 +41,7 @@ class MatchDetailPresenter(private val view: MatchDetailView,
     }
 
     fun getAwayTeam(idTeam: String?) {
-        async(UI) {
+        async(context.main) {
             val data = bg {
                 gson.fromJson(apiRepository.doRequest(
                         TheSportDBApi.getTeamDetail(idTeam)),

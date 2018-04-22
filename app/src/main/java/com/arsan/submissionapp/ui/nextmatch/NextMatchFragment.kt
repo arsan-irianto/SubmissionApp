@@ -35,8 +35,8 @@ class NextMatchFragment : Fragment(), NextMatchView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        swipe_refresh.isRefreshing = false
-        progressBar = this.progress_bar
+        swipe_refresh_next.isRefreshing = false
+        progressBar = this.progress_bar_next
 
 
         nextMatchAdapter = NextMatchAdapter(requireContext(), nextMatch) {
@@ -44,15 +44,15 @@ class NextMatchFragment : Fragment(), NextMatchView {
                     "homeTeam" to "${it.idHomeTeam}",
                     "awayTeam" to "${it.idAwayTeam}")
         }
-        rv_schedule.adapter = nextMatchAdapter
-        rv_schedule.layoutManager = LinearLayoutManager(requireContext())
+        this.rv_schedule_next.adapter = nextMatchAdapter
+        this.rv_schedule_next.layoutManager = LinearLayoutManager(requireContext())
 
         val apiRequest = ApiRepository()
         val gson = Gson()
         nextMatchPresenter = NextMatchPresenter(this, apiRequest, gson)
         nextMatchPresenter.getNextMatch(leagueId)
 
-        swipe_refresh.onRefresh {
+        swipe_refresh_next.onRefresh {
             nextMatchPresenter.getNextMatch(leagueId)
         }
     }
@@ -76,7 +76,7 @@ class NextMatchFragment : Fragment(), NextMatchView {
     }
 
     override fun showMatchList(data: List<Match>) {
-        swipe_refresh.isRefreshing = false
+        swipe_refresh_next.isRefreshing = false
         nextMatch.clear()
         nextMatch.addAll(data)
         nextMatchAdapter.notifyDataSetChanged()

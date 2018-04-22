@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/match_detail"
         tools:context=".ui.matchdetail.MatchDetailActivity">
 
         <RelativeLayout
