@@ -57,31 +57,35 @@ class MatchDetailPresenterTest {
 
     @Test
     fun getHomeTeam() {
-        val teamDetail : MutableList<Team> = mutableListOf()
-        val response = TeamResponse(teamDetail)
-        val teamid = "133619"
+        val teamHome : MutableList<Team> = mutableListOf()
+        val response = TeamResponse(teamHome)
+        val teamHomeId = "133619"
 
         `when`(gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getMatchDetail(teamid)),
+                .doRequest(TheSportDBApi.getTeamDetail(teamHomeId)),
                 TeamResponse::class.java)).thenReturn(response)
 
-        matchDetailPresenter.getHomeTeam(teamid)
+        matchDetailPresenter.getHomeTeam(teamHomeId)
 
-        verify(view).showHomeTeam(teamDetail)
+        verify(view).showLoading()
+        verify(view).showHomeTeam(teamHome)
+        verify(view).hideLoading()
     }
 
     @Test
     fun getAwayTeam() {
-        val teamDetail : MutableList<Team> = mutableListOf()
-        val response = TeamResponse(teamDetail)
-        val teamid = "133932"
+        val teamAway : MutableList<Team> = mutableListOf()
+        val response = TeamResponse(teamAway)
+        val teamAwayId = "133932"
 
         `when`(gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getMatchDetail(teamid)),
+                .doRequest(TheSportDBApi.getTeamDetail(teamAwayId)),
                 TeamResponse::class.java)).thenReturn(response)
 
-        matchDetailPresenter.getAwayTeam(teamid)
+        matchDetailPresenter.getAwayTeam(teamAwayId)
 
-        verify(view).showAwayTeam(teamDetail)
+        verify(view).showLoading()
+        verify(view).showAwayTeam(teamAway)
+        verify(view).hideLoading()
     }
 }

@@ -31,16 +31,19 @@ class MatchDetailPresenter(private val view: MatchDetailView,
     }
 
     fun getHomeTeam(idTeam: String?) {
+        view.showLoading()
         async(context.main) {
             val data = bg{ gson.fromJson(apiRepository.doRequest(
                     TheSportDBApi.getTeamDetail(idTeam)),
                     TeamResponse::class.java)
             }
             view.showHomeTeam(data.await().teams)
+            view.hideLoading()
         }
     }
 
     fun getAwayTeam(idTeam: String?) {
+        view.showLoading()
         async(context.main) {
             val data = bg {
                 gson.fromJson(apiRepository.doRequest(
@@ -48,6 +51,7 @@ class MatchDetailPresenter(private val view: MatchDetailView,
                         TeamResponse::class.java)
             }
             view.showAwayTeam(data.await().teams)
+            view.hideLoading()
         }
     }
 
