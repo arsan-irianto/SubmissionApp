@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import com.arsan.submissionapp.R
+import com.arsan.submissionapp.R.id.swipe_refresh_next
 import com.arsan.submissionapp.data.network.ApiRepository
 import com.arsan.submissionapp.data.network.model.Match
 import com.arsan.submissionapp.ui.matchdetail.MatchDetailActivity
