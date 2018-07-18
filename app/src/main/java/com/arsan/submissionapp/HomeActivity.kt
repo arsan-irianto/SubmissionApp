@@ -1,14 +1,17 @@
 package com.arsan.submissionapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import com.arsan.submissionapp.R.menu.navigation
-import com.arsan.submissionapp.ui.favorites.FavoritesMatchFragment
+import android.view.Menu
+import android.view.MenuItem
+import com.arsan.submissionapp.ui.favoritespage.FavoritesMatchFragment
+import com.arsan.submissionapp.ui.favoritespage.FavoritesPageFragment
 import com.arsan.submissionapp.ui.matchespage.MatchPageFragment
-import com.arsan.submissionapp.ui.nextmatch.NextMatchFragment
-import com.arsan.submissionapp.ui.prevmatch.PrevMatchFragment
+import com.arsan.submissionapp.ui.matchespage.MatchSearchActivity
+import com.arsan.submissionapp.ui.teamspage.TeamsPageFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -20,19 +23,14 @@ class HomeActivity : AppCompatActivity() {
                 openFragment(matchPageFragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_prevmatch -> {
-                val prevMatchFragment = PrevMatchFragment.newInstance()
-                openFragment(prevMatchFragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_nextmatch -> {
-                val nextMatchFragment = NextMatchFragment.newInstance()
-                openFragment(nextMatchFragment)
+            R.id.navigation_teams -> {
+                val teamsPageFragment = TeamsPageFragment.newInstance()
+                openFragment(teamsPageFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_favorites -> {
-                val favoritesMatchFragment = FavoritesMatchFragment.newInstance()
-                openFragment(favoritesMatchFragment)
+                val favoritesPageFragment = FavoritesPageFragment.newInstance()
+                openFragment(favoritesPageFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -44,7 +42,11 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        openFragment(PrevMatchFragment.newInstance())
+        openFragment(MatchPageFragment.newInstance())
+
+        toolbar.title = "Football Match"
+        setSupportActionBar(toolbar)
+
     }
 
     private fun openFragment(fragment: Fragment) {

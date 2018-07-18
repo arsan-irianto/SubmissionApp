@@ -11,23 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity">
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.matchdetail.MatchDetailActivity" />
+        <activity
+            android:name=".ui.matchdetail.MatchDetailActivity"
+            android:theme="@style/AppTheme.ActionBar" />
 <!--        <activity
-            android:name=".MatchPageActivity"
-            android:label="@string/title_activity_match_page">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
+            android:name=".ui.matchespage.MatchSearchActivity"
+            android:theme="@style/AppTheme" />-->
+        <activity
+            android:name=".ui.teamdetail.TeamDetailActivity"
+            android:theme="@style/AppTheme.ActionBar" />
+        <activity android:name=".ui.playerdetail.PlayerDetailActivity"
+            android:theme="@style/AppTheme.ActionBar"/>
     </application>
 
 </manifest>

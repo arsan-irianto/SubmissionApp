@@ -68,6 +68,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         progressBar.visible()
     }
 
+
     override fun hideLoading() {
         progressBar.invisible()
     }

@@ -25,7 +25,16 @@ class NextMatchPresenter(private val view: NextMatchView,
                         TheSportDBApi.getNextMatch(idLeague)),
                         MatchResponse::class.java)
             }
-            view.showMatchList(data.await().events)
+            val dataPrev = bg {
+                gson.fromJson(apiRepository.doRequest(
+                        TheSportDBApi.getPrevMatch(idLeague)),
+                        MatchResponse::class.java)
+            }
+            if (data.await().events == null) {
+                view.showMatchList(dataPrev.await().events)
+            } else {
+                view.showMatchList(data.await().events)
+            }
             view.hideLoading()
         }
     }

@@ -3,6 +3,7 @@ package com.arsan.submissionapp.data.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.arsan.submissionapp.data.db.model.FavoritesMatch
+import com.arsan.submissionapp.data.db.model.FavoritesTeam
 import org.jetbrains.anko.db.*
 
 class SQLiteDBHelper(ctx: Context)
@@ -31,10 +32,19 @@ class SQLiteDBHelper(ctx: Context)
                 FavoritesMatch.AWAY_TEAM_ID to TEXT,
                 FavoritesMatch.AWAY_TEAM to TEXT,
                 FavoritesMatch.AWAY_SCORE to TEXT)
+
+        db.createTable(FavoritesTeam.TABLE_FAVTEAM, true,
+                FavoritesTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+                FavoritesTeam.TEAM_ID to TEXT + UNIQUE,
+                FavoritesTeam.TEAM_NAME to TEXT,
+                FavoritesTeam.TEAM_BADGE to TEXT,
+                FavoritesTeam.FORMED_YEAR to TEXT,
+                FavoritesTeam.STADIUM to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.dropTable(FavoritesMatch.TABLE_FAVORITE, true)
+        db.dropTable(FavoritesTeam.TABLE_FAVTEAM, true)
     }
 
 }

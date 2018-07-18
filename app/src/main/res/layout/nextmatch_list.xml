@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="@string/str_event_date"
             android:textColor="@color/colorTitle"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="@string/str_event_date" />
 
     </LinearLayout>
 

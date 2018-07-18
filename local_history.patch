@@ -1,0 +1,33 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1526869303000)
++++ app/src/main/res/values/strings.xml	(date 1526869303000)
+@@ -25,11 +25,19 @@
+     <string name="title_nav_matches">Matches</string>
+     <string name="title_nav_teams">Teams</string>
+ 
+-    <array name="leagues">
+-        <item name="4328">English Premier League</item>
+-        <item name="4331">German Bundesliga</item>
+-        <item name="4332">Italian Serie A</item>
+-        <item name="4334">French Ligue 1</item>
+-        <item name="4335">Spanish La Liga</item>
++    <array name="leagues_code">
++        <item>English Premier League</item>
++        <item>German Bundesliga</item>
++        <item>Italian Serie A</item>
++        <item>French Ligue 1</item>
++        <item>Spanish La Liga</item>
++    </array>
++
++    <array name="leagues_name">
++        <item>English Premier League</item>
++        <item>German Bundesliga</item>
++        <item>Italian Serie A</item>
++        <item>French Ligue 1</item>
++        <item>Spanish La Liga</item>
+     </array>
+ </resources>

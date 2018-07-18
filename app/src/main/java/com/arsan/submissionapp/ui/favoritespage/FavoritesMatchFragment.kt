@@ -1,26 +1,21 @@
-package com.arsan.submissionapp.ui.favorites
+package com.arsan.submissionapp.ui.favoritespage
 
 
-import android.database.sqlite.SQLiteConstraintException
-import android.database.sqlite.SQLiteException
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 
 import com.arsan.submissionapp.R
 import com.arsan.submissionapp.data.db.database
 import com.arsan.submissionapp.data.db.model.FavoritesMatch
 import com.arsan.submissionapp.ui.matchdetail.MatchDetailActivity
 import com.arsan.submissionapp.util.invisible
-import com.arsan.submissionapp.util.visible
 import kotlinx.android.synthetic.main.fragment_favorites_match.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 

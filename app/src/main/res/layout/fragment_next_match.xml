@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/fragment_next_match"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     tools:context=".ui.nextmatch.NextMatchFragment">
 
+    <Spinner
+        android:id="@+id/spinner_league"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_league">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,4 +40,4 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

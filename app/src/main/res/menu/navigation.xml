@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
+<!--    <item
         android:id="@+id/navigation_matches"
         android:icon="@drawable/ic_event_note_black_24dp"
-        android:title="@string/title_matches"/>
+        android:title="@string/title_matches"/>-->
 
     <item
-        android:id="@+id/navigation_prevmatch"
+        android:id="@+id/navigation_matches"
         android:icon="@drawable/ic_event_black_24dp"
-        android:title="@string/title_prev_match" />
+        android:title="@string/title_nav_matches" />
 
     <item
-        android:id="@+id/navigation_nextmatch"
+        android:id="@+id/navigation_teams"
         android:icon="@drawable/ic_event_note_black_24dp"
-        android:title="@string/title_next_match" />
+        android:title="@string/title_nav_teams" />
 
     <item
         android:id="@+id/navigation_favorites"

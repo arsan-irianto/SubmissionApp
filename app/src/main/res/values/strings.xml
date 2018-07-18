@@ -22,4 +22,11 @@
     <string name="title_next">Next</string>
     <string name="title_past">Past</string>
     <string name="title_activity_match_page">MatchPageActivity</string>
+    <string name="title_nav_matches">Matches</string>
+    <string name="title_nav_teams">Teams</string>
+    <string name="page_team_detail">Page Team Detail</string>
+    <string name="descr">Description</string>
+    <string name="weight">Weight (Kg)</string>
+    <string name="height">Height (m)</string>
+    <string name="player_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut scelerisque eros, eget efficitur nibh. Proin dapibus eu nisl sit amet consectetur. Maecenas egestas urna eros, ut commodo nisi ultricies a. Morbi placerat interdum neque, vel dapibus velit dignissim et. Phasellus mattis consequat felis et mattis. Sed pulvinar sed nulla ac mollis. Curabitur cursus nibh sed volutpat sagittis. Quisque quis tempus ipsum. Pellentesque sed mattis felis.</string>
 </resources>

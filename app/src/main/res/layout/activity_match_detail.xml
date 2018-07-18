@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/swipe_refresh"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ScrollView
+        android:id="@+id/match_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/match_detail"
         tools:context=".ui.matchdetail.MatchDetailActivity">
 
         <RelativeLayout
@@ -36,9 +35,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        tools:text="@string/str_event_date"
                         android:textColor="@color/colorTitle"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="@string/str_event_date" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -28,6 +28,7 @@ class MatchDetailPresenter(private val view: MatchDetailView,
             view.showMatchDetail(data.await().events)
             view.hideLoading()
         }
+
     }
 
     fun getHomeTeam(idTeam: String?) {
